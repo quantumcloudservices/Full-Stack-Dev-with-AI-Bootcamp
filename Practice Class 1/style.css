@@ -3,17 +3,14 @@
         }
         h1 {
             color: white;
+            font-family: "Press Start 2P", consolas, sans-serif;
         }
         p {
             background-color: gray;
             color: white;
             font-family: "consolas", sans-serif;
-        }
-        .odd {
-            background-color: gray;
-            color: white;
-        }
-        .even {
-            background-color: lightgray;
-            color: black;
+            font-size: 30px;
+            font-style: italic;
+            font-weight: bold;
+            text-decoration: cyan underline;
         }
