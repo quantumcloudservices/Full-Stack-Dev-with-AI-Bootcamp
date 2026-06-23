@@ -8,6 +8,11 @@
             background-color: gray;
             color: white;
         }
-        #p1 {
-            background-color: red;
+        .odd {
+            background-color: gray;
+            color: white;
+        }
+        .even {
+            background-color: lightgray;
+            color: black;
         }
