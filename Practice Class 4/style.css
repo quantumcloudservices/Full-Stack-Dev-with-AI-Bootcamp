@@ -25,11 +25,22 @@
   height: 100%;
   border: thin dotted green;
   display: flex;
+  cursor: pointer;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  transition-duration: 1s;
+  gap: 2.25rem;
+  justify-content: flex-end;
+  align-items: stretch;
 }
 
 .button-item {
   margin-left: 4px;
   color: white;
+  ::before{
+    content: "|";
+    color: white;
+  }
 }
 
 .main {
