@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Interactive Text Effect</title>
+    <style>
+        /* ------------------- */
+        /* BASE STYLING & LAYOUT CSS */
+        /* ------------------- */
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #0f0d2e; /* Dark background for contrast */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Prevents scrollbars from slight transforms */
+        }
+
+        /* The main container holding the H1 */
+        .interactive-container {
+            perspective: 1000px; /* Defines the viewing distance for 3D effects */
+            padding: 20px;
+        }
+
+        #dynamic-text {
+            font-size: 8vw; /* Responsive font size */
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            
+            /* CRITICAL FOR SMOOTHNESS: Smooth transitions on all changes */
+            transition: transform 0.1s ease-out, text-shadow 0.3s, background-color 0.5s;
+            display: inline-block; /* Allows transformations to work on the block level */
+            text-align: center;
+        }
+
+        /* The glowing effect wrapper */
+        #dynamic-text::before {
+            content: attr(data-text); /* Use the text content itself for styling */
+            display: block;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            /* Initial large shadow/glow */
+            box-shadow: 
+                0 0 10px rgba(236, 72, 153, 0.6), /* Red glow */
+                0 0 30px rgba(168, 85, 247, 0.5); /* Purple glow */
+            transition: all 0.3s ease-out;
+        }
+
+        /* Keyframes for a subtle background animation (pulsing) */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px #ff6b81, inset 0 -5px 10px rgba(255, 107, 129, 0.5); }
+            50% { box-shadow: 0 0 20px #a855f7, inset 0 -5px 10px rgba(168, 85, 247, 0.7); }
+            100% { box-shadow: 0 0 10px #ff6b81, inset 0 -5px 10px rgba(255, 107, 129, 0.5); }
+        }
+
+        /* Apply the animation to keep things alive even without mouse movement */
+        #dynamic-text::before {
+            animation: pulseGlow 4s infinite alternate;
+            z-index: -1; /* Keep it behind the text structure */
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="interactive-container">
+        <!-- Use a custom attribute to help JavaScript/CSS target the text -->
+        <h1 id="dynamic-text" data-text="Hello World">Hello World</h1>
+    </div>
+
+
+    <script>
+        const textElement = document.getElementById('dynamic-text');
+
+        // Set up the mousemove listener on the entire document body
+        document.addEventListener('mousemove', (e) => {
+            // 1. Get Mouse Coordinates and Normalize Them
+            // We normalize coordinates to a range like -10 to 10, 
+            // regardless of screen size, for consistent CSS application.
+            const x = e.clientX / window.innerWidth; // Ranges from 0 to 1
+            const y = e.clientY / window.innerHeight; // Ranges from 0 to 1
+
+            // Calculate relative movement from the center (normalized -1 to 1)
+            const normalizedX = (x * 2 - 1);
+            const normalizedY = (y * 2 - 1);
+
+            /* ============================================== */
+            /* EFFECT 1: PERSPECTIVE TILT (3D Effect)          */
+            /* The text tilts on the X and Y axes based on cursor position */
+            /* Using a slight multiplier ensures visible effect. */
+            const tiltX = normalizedY * 5; // Vertical movement affects X rotation
+            const tiltY = -normalizedX * 5; // Horizontal movement affects Y rotation
+
+            textElement.style.transform = 
+                `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+
+            /* ============================================== */
+            /* EFFECT 2: GRADIENT COLOR SHIFT (Shades/Color)   */
+            /* Use the cursor position to calculate a Hue Shift (HSL color model) */
+            // Map x and y (0-1) to hue range (0-360 degrees)
+            const hue = Math.floor(x * 300); // Shifts across 300 degrees of color
+            const saturation = 70 + Math.sin(y * 0.5) * 20; // Slight S change
+
+            // Apply the computed HSL value to the text's primary color (the content itself)
+            textElement.style.color = `hsl(${hue}, ${saturation}%, 60%)`;
+            
+            /* Update the ::before element (which controls the main gradient background/glow) */
+            // We calculate a blended linear gradient that shifts based on cursor position
+            const gradientColorStart = `hsl(${Math.floor(x * 360)}, 80%, 50%)`; // Changes start color
+            const gradientColorEnd = `hsl(${(1 - y) * 360}, 80%, 50%)`;   // Changes end color
+
+            textElement.querySelector('::before').style.background = 
+                `linear-gradient(90deg, ${gradientColorStart}, ${gradientColorEnd})`;
+
+
+            /* ============================================== */
+            /* EFFECT 3: SHADOW/GLOW RESPONSE (Intensity)       */
+            /* The shadow size and offset react to how far the mouse is from the center of the screen. */
+            const distanceX = Math.abs(normalizedX);
+            const distanceY = Math.abs(normalizedY);
+
+            // Scale the shadow intensity based on distance 
+            const shadowIntensity = (distanceX + distanceY) * 10; // Max visible change: ~200px spread
+
+            /* Apply the custom box-shadow via JavaScript for better control */
+            textElement.querySelector('::before').style.boxShadow = 
+                `
+                ${Math.round(5 + distanceX * 3)}px ${Math.round(-5) + distanceY * 2}px 
+                ${shadowIntensity}px rgba(168, 85, 247, 0.9), /* Main color shadow */
+                ${distanceX*2}px ${Math.round(-5)}px ${shadowIntensity * 0.5}px rgba(236, 72, 153, 0.8) /* Secondary glow */
+                `;
+
+        });
+    </script>
+</body>
+</html>
