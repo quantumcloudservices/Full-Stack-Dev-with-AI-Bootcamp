@@ -1,22 +1,20 @@
-// Global variable to store the current input
+// variable to store my current operation
 let currentInput = '';
-// Add number/operator to display
+// function to add number or operator to the current operation
 function appendToDisplay(value) {
     currentInput += value;
     document.getElementById('display').value = currentInput;
 }
         
-// Clear the display
+// Clearing current operation
 function clearDisplay() {
     currentInput = '';
     document.getElementById('display').value = '';
 }
         
- // Calculate result
+ // Calculating current operation
 function calculate() {
      try {
-         // Replace * with * for JavaScript
-         let expression = currentInput.replace(/×/g, '*');
          let result = eval(expression);
          document.getElementById('display').value = result;
         currentInput = result.toString();
