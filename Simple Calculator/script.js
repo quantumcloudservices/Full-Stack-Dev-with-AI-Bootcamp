@@ -21,28 +21,28 @@ function calculate() {
         currentInput = '';
     }
  }
-// Calculating multiple operations
-// function calculateMultipleOperations() {
-//     let operations = document.getElementById('operationInput').value.split(',');
-//     if (operationInput.trim() === '') {
-//         document.getElementById('display').innerText = 'Enter operation separated by commas';
-//         return;
-//     }
-//     let operations = operationInput.split(',');
-//     let results = [];
-//     for(let i = 0; i < operations.length; i++) {
-//         try {
-//             let operation = operations[i].trim();
-//             if (operation !== '') {
-//                 let result = eval(operation);
-//                 results.push(result);
-//             } else {
-//                 results.push('Invalid Operator');
-//             }
-//         } catch (error) {
-//             results.push('Invalid Operator');
-//         }
-//     }
-//     document.getElementById('display').innerText = results.join(', ');
-// }
+//Calculating multiple operations
+function calculateMultipleOperations() {
+    let operations = document.getElementById('operationInput').value.split(',');
+    if (operationInput.trim() === '') {
+        document.getElementById('display').innerText = 'Enter operation separated by commas';
+        return;
+    }
+    let operations = operationInput.split(',');
+    let results = [];
+    for(let i = 0; i < operations.length; i++) {
+        try {
+            let operation = operations[i].trim();
+            if (operation !== '') {
+                let result = eval(operation);
+                results.push(result);
+            } else {
+                results.push('Invalid Operator');
+            }
+        } catch (error) {
+            results.push('Invalid Operator');
+        }
+    }
+    document.getElementById('display').innerText = results.join(', ');
+}
 
