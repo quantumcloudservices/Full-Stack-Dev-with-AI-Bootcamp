@@ -20,6 +20,20 @@ class Deck{
             }
         }
     }
+    drawCard(){
+        return this.cards.pop();
+    }
+    shufle(){
+    for(let i = 0; i < this.cards.length; i++){
+        const temp = this.cards[i];
+        const randomIndex = Math.floor(Math.random() * (this.cards.length));
+        const randomCard = this.cards[randomIndex];
+        //swap
+        this.cards[i] = randomCard;
+        this.cards[randomIndex] = temp;
+    }
+    }
 }
-
 const deck = new Deck();
+deck.shufle();
+console.log(deck.cards);
