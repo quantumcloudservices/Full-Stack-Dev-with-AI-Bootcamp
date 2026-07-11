@@ -21,7 +21,7 @@ function calculate() {
         currentInput = '';
     }
  }
-// Calculating multiple operations
+//Calculating multiple operations
 // function calculateMultipleOperations() {
 //     let operations = document.getElementById('operationInput').value.split(',');
 //     if (operationInput.trim() === '') {

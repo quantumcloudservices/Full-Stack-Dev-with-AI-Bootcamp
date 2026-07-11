@@ -1,0 +1,16 @@
+body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        .positive {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .zero {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
