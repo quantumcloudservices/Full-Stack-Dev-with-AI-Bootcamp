@@ -51,7 +51,7 @@ Manuel.giveWeapon(masterSword);
 
 function fight(p1: Player, p2: Player) {
     const fullAttackPower1 = p1.weapon ? p1.weapon.attackPower : 0;
-    console.log(p1.name + 'damaged' + p2.name + 'with' + fullAttackPower1 + 'points of damage');
+    console.log(p1.name + ' damaged ' + p2.name + ' with ' + fullAttackPower1 + ' points of damage');
 }
 
 fight(Manuel, AR)
