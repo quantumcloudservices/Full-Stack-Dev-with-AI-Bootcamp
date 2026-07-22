@@ -1,0 +1,12 @@
+.pokemoncontainer {
+    border: thin solid black;
+    min-height: 200px;
+    height: fit-content;
+    width: fit-content;
+    min-width: 200px;
+    border-radius: 8px;
+    padding: auto auto;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 5px 5px 5px;
+}
