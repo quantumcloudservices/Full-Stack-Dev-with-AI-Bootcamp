@@ -50,7 +50,7 @@ function renderPokemon(pokemon) {
 async function handleSearch() {
     const term = input.value.trim();
     if (!term) return;
-    container.classList.add('Fetching Pokémon…');
+    container.classList.add('Fetching_Pokémon…');
     const nameElement = document.querySelector(".pokemon-name");
     const PokemonID = document.querySelector(".pokemon-id");
     const imageElement = document.querySelector(".pokemon-image");
@@ -72,7 +72,7 @@ async function handleSearch() {
         imageElement.src = '';
         stats.innerHTML = `<p class="error-message">Error: ${error.message}</p>`;
     } finally {
-        container.classList.remove('Fetching Pokémon…');
+        container.classList.remove('Fetching Pokémon...');
     }
 }
 
