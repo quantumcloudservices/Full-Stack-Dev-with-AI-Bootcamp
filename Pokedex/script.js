@@ -1,4 +1,3 @@
-const btn = document.getElementById("btn");
 const input = document.getElementById("input");
 const pokemonContainer = document.getElementById("pokemonContainer");
 btn.addEventListener("click", async function() {
