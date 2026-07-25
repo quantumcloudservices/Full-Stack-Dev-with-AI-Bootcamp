@@ -18,7 +18,6 @@ function renderPokemon(pokemon) {
     const nameElement = document.querySelector(".pokemon-name");
     const PokemonID = document.querySelector(".pokemon-id");
     const imageElement = document.querySelector(".pokemon-image");
-    
     types.innerHTML = '';
     stats.innerHTML = '';
     nameElement.textContent = pokemon.name;
