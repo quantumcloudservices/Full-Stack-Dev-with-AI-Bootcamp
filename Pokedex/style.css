@@ -1,12 +1,199 @@
-.pokemoncontainer {
-    border: thin solid black;
-    min-height: 200px;
-    height: fit-content;
-    width: fit-content;
-    min-width: 200px;
-    border-radius: 8px;
-    padding: auto auto;
-    margin: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
     text-align: center;
-    box-shadow: 5px 5px 5px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#input:focus {
+    border-color: #6b7280;
+}
+
+#btn {
+    padding: 12px 20px;
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+#btn:hover {
+    background-color: #4b5563;
+}
+
+.pokemon-container {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon-info {
+    width: 100%;
+}
+
+.pokemon-image {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: #f9fafb;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pokemon-name {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.pokemon-id {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 15px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.stat-name {
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.stat-value {
+    font-weight: 600;
+    color: #333;
+}
+
+
+.pokemon-types {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.type-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+}
+
+.type-fire { background-color: #f97316; }
+.type-water { background-color: #3b82f6; }
+.type-grass { background-color: #22c55e; }
+.type-electric { background-color: #eab308; }
+.type-ice { background-color: #60a5fa; }
+.type-flying { background-color: #60a5fa; }
+.type-poison { background-color: #a855f7; }
+.type-ground { background-color: #d97706; }
+.type-rock { background-color: #ca8a04; }
+.type-bug { background-color: #22c55e; }
+.type-ghost { background-color: #7c3aed; }
+.type-steel { background-color: #6b7280; }
+.type-psychic { background-color: #ec4899; }
+.type-dark { background-color: #1f2937; }
+.type-dragon { background-color: #0ea5e9; }
+.type-fairy { background-color: #f472b6; }
+.type-fighting {background-color: #000000; }
+.type-normal {background-color: #4d5e5f;}
+
+.pokemon-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.loading {
+    opacity: 0.7;
+}
+
+.error-message {
+    color: #ef4444;
+    padding: 20px;
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    .search {
+        flex-direction: column;
+    }
+    
+    .pokemon-image {
+        width: 120px;
+        height: 120px;
+    }
 }
